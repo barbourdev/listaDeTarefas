@@ -1,0 +1,12 @@
+.app-section {
+    display: flex;
+    padding: 50px;
+}
+
+.cards {
+    width: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    flex-wrap: wrap;
+}
