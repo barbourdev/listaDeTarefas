@@ -12,7 +12,7 @@ export default function Card({ nomeTarefa, descricaoTarefa, opcoes, grau, id, ao
 
   return(
     <div className="card-tarefa">
-      <div>
+      <div className='cabecalho-pai'>
         <div className="cabecalho" style={{backgroundColor: cor}}>
             <h3>{nomeTarefa}</h3>
         </div>

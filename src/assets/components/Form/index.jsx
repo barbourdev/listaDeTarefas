@@ -4,7 +4,7 @@ import Input from '../Input/index';
 import { useState } from 'react';
 import './Form.css'
 
-export default function Form({ opcoes, tarefaCadastrada }){
+export default function Form({ opcoes, tarefaCadastrada, filtrarFinalizadas }){
 
     const [grau, setGrau] = useState('')
     const [nomeTarefa, setNomeTarefa] = useState('')
@@ -26,31 +26,41 @@ export default function Form({ opcoes, tarefaCadastrada }){
     }
     
     return(
-        <form onSubmit={aoSalvar} className='form'>
-            <div className="inputs-form">
-                <Select
-                    obrigatorio={true}
-                    label={'Grau da tarefa'}
-                    opcoes={opcoes}
-                    valorAlterado={valorAlterado => setGrau(valorAlterado)}
-                    valor={grau}
-                />
-                <Input 
-                    obrigatorio={true}
-                    label={'Nome da Tarefa'}
-                    valorAlterado={valorAlterado => setNomeTarefa(valorAlterado)}
-                    valor={nomeTarefa}
-                />
-                <Input 
-                    obrigatorio={true}
-                    label={'Descrição da Tarefa'}
-                    valorAlterado={valorAlterado => setDescricaoTarefa(valorAlterado)}
-                    valor={descricaoTarefa}
-                />
-                <button>
-                  Criar Tarefa
-                </button>
-            </div>
-        </form>
+        <>
+            <form onSubmit={aoSalvar} className='form'>
+                <div className="inputs-form">
+                    <Select
+                        obrigatorio={true}
+                        label={'Grau da tarefa'}
+                        opcoes={opcoes}
+                        valorAlterado={valorAlterado => setGrau(valorAlterado)}
+                        valor={grau}
+                    />
+                    <Input 
+                        obrigatorio={true}
+                        label={'Nome da Tarefa'}
+                        valorAlterado={valorAlterado => setNomeTarefa(valorAlterado)}
+                        valor={nomeTarefa}
+                    />
+                    <Input 
+                        obrigatorio={true}
+                        label={'Descrição da Tarefa'}
+                        valorAlterado={valorAlterado => setDescricaoTarefa(valorAlterado)}
+                        valor={descricaoTarefa}
+                    />
+                    <button>
+                      Criar Tarefa
+                    </button>
+                    <h3>Filtros</h3>
+                    <div className="filtro">
+                        <Input
+                            textoAlternativo={'Finalizadas'}
+                            type='checkbox'
+                            aoClicar={filtrarFinalizadas}
+                        />
+                    </div>
+                </div>
+            </form>
+        </>
     )
 }

@@ -9,6 +9,7 @@ export default function App(){
 
   const [tarefas, setTarefas] = useState([])
   const [tarefasFinalizadas, setTarefasFinalizadas] = useState([])
+  const [filtro, setFiltro] = useState(false)
 
   const novaTarefa = (tarefa) => {
     const novasTarefas = [...tarefas, tarefa];
@@ -66,43 +67,45 @@ export default function App(){
     <section className='app-section'>
       <Form
         tarefaCadastrada={tarefa => novaTarefa(tarefa)} 
+        filtrarFinalizadas={() => setFiltro(!filtro)}
         opcoes={opcoes}
-      />
-
-      {tarefas.length > 0 && 
-        <section className="cards">
-            {tarefas.map(tarefa =>
-              <Card 
-                key={tarefa.id}
-                id={tarefa.id}
-                nomeTarefa={tarefa.nomeTarefa}
-                descricaoTarefa={tarefa.descricaoTarefa}
-                grau={tarefa.grau}
-                opcoes={opcoes.filter(opcao => opcao.grau === tarefa.grau)}
-                aoDeletar={deletarTarefa}
-                aoFinalizar={finalizarTarefa}
-              />
-            )}
-        </section>
-      }
-
-      {tarefasFinalizadas.length > 0 && 
-        <section className="cards">
-            {tarefasFinalizadas.map(tarefa =>
-              <Card 
-                key={tarefa.id}
-                id={tarefa.id}
-                nomeTarefa={tarefa.nomeTarefa}
-                descricaoTarefa={tarefa.descricaoTarefa}
-                grau={tarefa.grau}
-                opcoes={opcoes.filter(opcao => opcao.grau === tarefa.grau)}
-                aoDeletar={deletarTarefa}
-                aoFinalizar={finalizarTarefa}
-                tarefaFeita={tarefa.finalizada}
-              />
-            )}
-        </section>
-      }
+        />
+          {
+            filtro !== true ? (
+              tarefas.length > 0 && 
+                <section className="cards">
+                    {tarefas.map(tarefa =>
+                      <Card 
+                        key={tarefa.id}
+                        id={tarefa.id}
+                        nomeTarefa={tarefa.nomeTarefa}
+                        descricaoTarefa={tarefa.descricaoTarefa}
+                        grau={tarefa.grau}
+                        opcoes={opcoes.filter(opcao => opcao.grau === tarefa.grau)}
+                        aoDeletar={deletarTarefa}
+                        aoFinalizar={finalizarTarefa}
+                      />
+                    )}
+                </section>  
+            ) : (
+              tarefasFinalizadas.length > 0 && 
+                <section className="cards">
+                    {tarefasFinalizadas.map(tarefa =>
+                      <Card 
+                        key={tarefa.id}
+                        id={tarefa.id}
+                        nomeTarefa={tarefa.nomeTarefa}
+                        descricaoTarefa={tarefa.descricaoTarefa}
+                        grau={tarefa.grau}
+                        opcoes={opcoes.filter(opcao => opcao.grau === tarefa.grau)}
+                        aoDeletar={deletarTarefa}
+                        aoFinalizar={finalizarTarefa}
+                        tarefaFeita={tarefa.finalizada}
+                      />
+                    )}
+                </section>
+            )
+          }
 
     </section>
   )
