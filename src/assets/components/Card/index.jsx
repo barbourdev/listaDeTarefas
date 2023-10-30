@@ -1,6 +1,6 @@
 import { AiOutlineClose, AiOutlineCheck } from 'react-icons/ai'
-
 import './Card.css'
+
 
 export default function Card({ nomeTarefa, descricaoTarefa, opcoes, grau, id, aoDeletar, aoFinalizar, tarefaFeita }){
   

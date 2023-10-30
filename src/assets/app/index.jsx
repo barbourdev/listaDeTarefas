@@ -1,10 +1,10 @@
-import { v4 as uuidv4 } from 'uuid';
-import './App.css';
-import Swal from 'sweetalert2';
-import { format } from 'date-fns';
-import Form from '../components/Form';
-import { useState } from 'react';
 import Card from './../components/Card/index';
+import Form from '../components/Form';
+import { v4 as uuidv4 } from 'uuid';
+import { format } from 'date-fns';
+import { useState } from 'react';
+import Swal from 'sweetalert2';
+import './App.css';
 
 export default function App(){
 
@@ -57,24 +57,17 @@ export default function App(){
 
   function finalizarTarefa(id) {
     const tarefaFinalizada = tarefas.findIndex(tarefa => tarefa.id === id)
+  
+    const tarefasCopia = [...tarefas]
+    tarefasCopia[tarefaFinalizada].finalizada = true
+    const dataHora = new Date()
+    const dataHoraFormatada = format(dataHora, "dd/MM/yyyy HH:mm:ss")
+    const descricaoOriginal = tarefasCopia[tarefaFinalizada].descricaoTarefa
+    tarefasCopia[tarefaFinalizada].descricaoTarefa = `${descricaoOriginal}\n\nFinalizada em: ${dataHoraFormatada}`
     
-    if (tarefaFinalizada !== -1) {
-      const tarefasCopia = [...tarefas]
-
-      const dataHora = new Date()
-      const dataHoraFormatada = format(dataHora, "dd/MM/yyyy HH:mm:ss")
-
-      const descricaoOriginal = tarefasCopia[tarefaFinalizada].descricaoTarefa
-
-      tarefasCopia[tarefaFinalizada].descricaoTarefa = `${descricaoOriginal}\n\nFinalizada em: ${dataHoraFormatada}`
-
-      tarefasCopia[tarefaFinalizada].finalizada = true
-      console.log(tarefasCopia[tarefaFinalizada])
-      
-      setTarefasFinalizadas([...tarefasFinalizadas, tarefasCopia[tarefaFinalizada]]);
-      tarefasCopia.splice(tarefaFinalizada, 1)
-      setTarefas(tarefasCopia)
-    }
+    setTarefasFinalizadas([...tarefasFinalizadas, tarefasCopia[tarefaFinalizada]]);
+    tarefasCopia.splice(tarefaFinalizada, 1)
+    setTarefas(tarefasCopia)
 
     const Toast = Swal.mixin({
       toast: true,
@@ -133,9 +126,6 @@ export default function App(){
                 </section>
             )
           }
-
-          
-
     </section>
   )
 }
