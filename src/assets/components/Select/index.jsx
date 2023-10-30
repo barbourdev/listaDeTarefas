@@ -8,7 +8,7 @@ export default function Select({ label, opcoes, valorAlterado, valor, obrigatori
 
     return(
         <div className="select-input">
-            <label>{label}</label>
+            <h3>{label}</h3>
             <select onChange={valueChange} value={valor} required={obrigatorio}>
                 <option value=""></option>
                 {opcoes.map(opcao => <option key={opcao.id}>{opcao.grau}</option>)}

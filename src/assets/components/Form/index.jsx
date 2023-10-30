@@ -1,8 +1,9 @@
 import Select from '../Select/index';
+import Swal from 'sweetalert2';
 import { v4 as uuidv4 } from 'uuid';
 import Input from '../Input/index';
 import { useState } from 'react';
-import './Form.css'
+import './Form.css';
 
 export default function Form({ opcoes, tarefaCadastrada, filtrarFinalizadas }){
 
@@ -23,6 +24,19 @@ export default function Form({ opcoes, tarefaCadastrada, filtrarFinalizadas }){
         // setGrau('')
         // setNomeTarefa('')
         // setDescricaoTarefa('')
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+          })
+          
+          Toast.fire({
+            icon: 'success',
+            title: 'Tarefa criada com sucesso!'
+          })
     }
     
     return(

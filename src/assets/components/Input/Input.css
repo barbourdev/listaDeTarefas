@@ -18,6 +18,7 @@
 }
 
 .campo-input input {
+    font-size: 15px;
     border: none;
     padding: 5px;
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.06);

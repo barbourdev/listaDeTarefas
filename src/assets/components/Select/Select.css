@@ -10,7 +10,7 @@
 
 .select-input select {
     border: none;
-    margin-bottom: 10px;
+    font-size: 15px;
     padding: 5px;
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.06);
 }

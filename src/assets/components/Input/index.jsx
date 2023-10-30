@@ -8,7 +8,7 @@ export default function Input({ label, type='text', obrigatorio=false, valor, va
 
     return(
         <div className={`campo-input ${type}`}>
-            <label>{label}</label>
+            <h3>{label}</h3>
             <input type={type} required={obrigatorio} value={valor} onChange={valueChange} onClick={aoClicar} id={type}/>
             <p>{textoAlternativo}</p>
         </div>

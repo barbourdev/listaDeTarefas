@@ -8,8 +8,6 @@ export default function Card({ nomeTarefa, descricaoTarefa, opcoes, grau, id, ao
 
   const finalizada = {tarefaFeita}
 
-  console.log(finalizada.tarefaFeita)
-
   return(
     <div className="card-tarefa">
       <div className='cabecalho-pai'>

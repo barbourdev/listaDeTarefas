@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import './App.css'
+import './App.css';
+import Swal from 'sweetalert2';
 import { format } from 'date-fns';
 import Form from '../components/Form';
 import { useState } from 'react';
@@ -39,11 +40,24 @@ export default function App(){
 
   function deletarTarefa(id) {
     setTarefas(tarefas.filter(tarefa => tarefa.id !== id))
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+    })
+    
+    Toast.fire({
+      icon: 'info',
+      title: 'Tarefa deletada!'
+    })
   }
 
   function finalizarTarefa(id) {
     const tarefaFinalizada = tarefas.findIndex(tarefa => tarefa.id === id)
-
+    
     if (tarefaFinalizada !== -1) {
       const tarefasCopia = [...tarefas]
 
@@ -61,6 +75,19 @@ export default function App(){
       tarefasCopia.splice(tarefaFinalizada, 1)
       setTarefas(tarefasCopia)
     }
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+    })
+    
+    Toast.fire({
+      icon: 'success',
+      title: 'Tarefa finalizada com sucesso!'
+    })
   }
 
   return(
@@ -106,6 +133,8 @@ export default function App(){
                 </section>
             )
           }
+
+          
 
     </section>
   )
